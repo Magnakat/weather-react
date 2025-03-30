@@ -29,6 +29,29 @@
   margin-right: 10px;
   width: 800px;
 }
+/* Ensure the city name resizes dynamically */
+.city-name {
+  
+  margin-top: 50px; /* Add spacing above the city name */
+  font-size: 4rem; /* Default size */
+  text-align: left; /* Center the city name */
+  word-wrap: break-word; /* Break long city names */
+  overflow-wrap: break-word; /* Ensure long words wrap */
+  margin-bottom: 1rem; /* Add spacing below the city name */
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+  .city-name {
+    font-size: 2rem; /* Smaller font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .city-name {
+    font-size: 1.5rem; /* Even smaller font size for very small screens */
+  }
+}
 .date-today {
   color: #868e96;
 }

@@ -6,7 +6,7 @@ export default function App() {
     <div className="App">
        <div className="container">
         
-      < Weather/>
+      < Weather defaultCity="Harare"/>
       <div className="info">
         <div className="container1 text-center">
           <div className="row align-items-end">
