@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultCity); // State to track the input field value
-  const [searchedCity, setSearchedCity] = useState(props.defaultCity); // State to track the displayed city name
+  const [city, setCity] = useState(props.defaultCity); // State to track the displayed city name
+  const [searchCity, setSearchCity] = useState(props.defaultCity); // State to track the input field value
   const [unit, setUnit] = useState("celsius"); // State to track the temperature unit
 
   function handleResponse(response) {
@@ -26,18 +26,18 @@ export default function Weather(props) {
 
   function search() {
     const apiKey = "2d96d64425dca1d6eda00d942a281c0d";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
     event.preventDefault(); // Prevent form from reloading the page
-    setSearchedCity(city); // Update the displayed city name
+    setCity(searchCity); // Update the displayed city name
     search(); // Call the search function to fetch data for the entered city
   }
 
   function handleCityChange(event) {
-    setCity(event.target.value); // Update the input field value
+    setSearchCity(event.target.value); // Update the input field value
   }
 
   function showFahrenheit(event) {
@@ -62,84 +62,42 @@ export default function Weather(props) {
 
     return (
       <div className="Weather">
-        <div className="input-group mb-3">
+        {/* Search Form */}
+        <div className="search-container mb-3">
           <form className="search" id="search" onSubmit={handleSubmit}>
-            <input
-              type="search"
-              placeholder="Enter a City"
-              autoFocus
-              autoComplete="off"
-              id="input-city"
-              className="form-control shadow-sm"
-              onChange={handleCityChange}
-              value={city} // Bind the input field to the `city` state
-            />
-            <button type="submit" className="bsearch">
-              Search
-            </button>
+            <div className="row">
+              <div className="col-9">
+                <input
+                  type="search"
+                  placeholder="Enter a City"
+                  autoFocus
+                  autoComplete="off"
+                  id="input-city"
+                  className="form-control shadow-sm"
+                  onChange={handleCityChange}
+                  value={searchCity} // Bind the input field to the `searchCity` state
+                />
+              </div>
+              <div className="col-3">
+                <button type="submit" className="btn btn-primary w-100">
+                  Search
+                </button>
+              </div>
+            </div>
           </form>
         </div>
-        <h1 id="chosen-city" className="city-name">{searchedCity}</h1>
-       <h3>
-        < FormattedDate date = {weatherData.date} / > 
-        </h3>
-        <h2>
-          <img
-            src={weatherData.icon}
-            alt={weatherData.description}
-            className="weather-icon"
+
+        {/* Weather Info */}
+        <div className="weather-info-container">
+          <WeatherInfo
+            city={city} // Pass the displayed city name
+            data={weatherData}
+            temperature={temperature}
+            unit={unit}
+            showFahrenheit={showFahrenheit}
+            showCelsius={showCelsius}
+            convertToFahrenheit={convertToFahrenheit}
           />
-          <span className="temperature" id="temperature">{temperature}</span>
-          <span className="units">
-            {unit === "celsius" ? (
-              <>
-                °C | <a href="/" onClick={showFahrenheit}>°F</a>
-              </>
-            ) : (
-              <>
-                <a href="/" onClick={showCelsius}>°C</a> | °F
-              </>
-            )}
-          </span>
-        </h2>
-        <h3 className="today" id="description">{weatherData.description}</h3>
-        <div className="row row-cols-1 row-cols-md-2 g-4 card-group">
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Wind (km/h)</h5>
-                <p className="card-text" id="wind">{weatherData.wind}</p>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Humidity</h5>
-                <p className="card-text" id="humidity">{weatherData.humidity}%</p>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Feels Like</h5>
-                <p className="card-text" id="feels_like">
-                  {unit === "celsius"
-                    ? `${weatherData.feelsLike}°C`
-                    : `${convertToFahrenheit(weatherData.feelsLike)}°F`}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Pressure</h5>
-                <p className="card-text" id="pressure">{weatherData.pressure} hPa</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     );

@@ -77,6 +77,10 @@ h2 {
   top: 200px;
   margin-top: 20px;
 }
+/* Add spacing between the search form and weather info */
+.weather-info-container {
+  margin-top: 20px;
+}
 .card-text {
   color: #353cf7;
 }
