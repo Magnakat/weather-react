@@ -4,7 +4,8 @@ import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultCity); // State to track the city
+  const [city, setCity] = useState(props.defaultCity); // State to track the input field value
+  const [searchedCity, setSearchedCity] = useState(props.defaultCity); // State to track the displayed city name
   const [unit, setUnit] = useState("celsius"); // State to track the temperature unit
 
   function handleResponse(response) {
@@ -24,17 +25,18 @@ export default function Weather(props) {
 
   function search() {
     const apiKey = "2d96d64425dca1d6eda00d942a281c0d";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
     event.preventDefault(); // Prevent form from reloading the page
+    setSearchedCity(city); // Update the displayed city name
     search(); // Call the search function to fetch data for the entered city
   }
 
   function handleCityChange(event) {
-    setCity(event.target.value); // Update the city state with user input
+    setCity(event.target.value); // Update the input field value
   }
 
   function showFahrenheit(event) {
@@ -69,13 +71,14 @@ export default function Weather(props) {
               id="input-city"
               className="form-control shadow-sm"
               onChange={handleCityChange}
+              value={city} // Bind the input field to the `city` state
             />
             <button type="submit" className="bsearch">
               Search
             </button>
           </form>
         </div>
-        <h1 id="chosen-city" className="city-name">{city}</h1>
+        <h1 id="chosen-city" className="city-name">{searchedCity}</h1>
         <h3 id="date-today">{weatherData.date ? weatherData.date.toLocaleString() : "Loading date..."}</h3>
         <h2>
           <img
