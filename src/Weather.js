@@ -18,22 +18,22 @@ export default function Weather(props) {
       feelsLike: Math.round(response.data.main.feels_like),
       pressure: response.data.main.pressure,
       description: response.data.weather[0].description,
-      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`, // Icon URL
+      icon: response.data.weather[0].icon,
       date: new Date(response.data.dt * 1000), // Convert UTC timestamp to Date object
       ready: true,
     });
   }
 
-  function search() {
+  function search(cityToSearch) {
     const apiKey = "2d96d64425dca1d6eda00d942a281c0d";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityToSearch}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
     event.preventDefault(); // Prevent form from reloading the page
     setCity(searchCity); // Update the displayed city name
-    search(); // Call the search function to fetch data for the entered city
+    search(searchCity); // Pass the searchCity directly to the search function
   }
 
   function handleCityChange(event) {
@@ -70,7 +70,7 @@ export default function Weather(props) {
                 <input
                   type="search"
                   placeholder="Enter a City"
-                  autoFocus
+                  autoFocus="on"
                   autoComplete="off"
                   id="input-city"
                   className="form-control shadow-sm"
@@ -102,7 +102,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search(); // Fetch data for the default city on initial load
+    search(city); // Fetch data for the default city on initial load
     return <div>Loading...</div>;
   }
 }
