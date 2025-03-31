@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -79,7 +80,9 @@ export default function Weather(props) {
           </form>
         </div>
         <h1 id="chosen-city" className="city-name">{searchedCity}</h1>
-        <h3 id="date-today">{weatherData.date ? weatherData.date.toLocaleString() : "Loading date..."}</h3>
+       <h3>
+        < FormattedDate date = {weatherData.date} / > 
+        </h3>
         <h2>
           <img
             src={weatherData.icon}
