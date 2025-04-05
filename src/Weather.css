@@ -24,6 +24,17 @@
   display: flex;
   width: 800px;
 }
+.today {
+  margin-top: 100px;
+  font-size: 2rem; /* Default size */
+  text-align: left; /* Center the description */
+color: blue;
+position: absolute;
+right: 23%;
+top: 160px;
+margin-top: 30px;
+margin: 20px, 0, 20px, 0;
+}
 .btn {
   width: 140px; /* Set a fixed width for the button */
   display: inline-block; /* Ensure it stays inline with the input field */
@@ -89,13 +100,6 @@ h2 {
   font-size: 50px;
   color: #868e96;
   text-indent: 10px;
-}
-.today {
-  position: absolute;
-  right: 23%;
-  top: 160px;
-  margin-top: 30px;
-  margin: 20px, 0, 20px, 0;
 }
 .card-group {
   border: #868e96;
