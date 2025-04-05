@@ -24,12 +24,30 @@
   display: flex;
   width: 800px;
 }
-
+.btn {
+  width: 1000px; /* Set a fixed width for the button */
+  display: inline-block; /* Ensure it stays inline with the input field */
+  background-color: #353cf7;
+  color: #fff;
+  border: none;
+  margin-left: 150px; /* Add spacing between the input and button */
+  }
+/* Ensure the input field and button align properly */
 .form-control {
   margin-right: 10px;
-  width: 800px;
+  width: calc(100% - 10px); /* Adjust width to leave space for the button */
+  display: inline-block; /* Ensure it stays inline with the button */
 }
-/* Ensure the city name resizes dynamically */
+
+/* Adjust the search container for responsiveness */
+.search-container {
+  display: flex;
+  align-items: center; /* Vertically align the input and button */
+  justify-content: space-between; /* Ensure proper spacing */
+  gap: 10px; /* Add spacing between the input and button */
+margin-right: 100px;
+  margin-left: 100px;
+}
 .city-name {
   
   margin-top: 50px; /* Add spacing above the city name */
@@ -40,16 +58,23 @@
   margin-bottom: 1rem; /* Add spacing below the city name */
 }
 
-/* Adjust font size for smaller screens */
+
 @media (max-width: 768px) {
-  .city-name {
-    font-size: 2rem; /* Smaller font size for smaller screens */
+  .form-control {
+    width: calc(100% - 180px); /* Adjust width for smaller screens */
+  }
+  .btn {
+    width: 100px; /* Keep the button size consistent */
   }
 }
 
 @media (max-width: 480px) {
-  .city-name {
-    font-size: 1.5rem; /* Even smaller font size for very small screens */
+  .form-control {
+    width: calc(100% - 150px); /* Adjust width for very small screens */
+  }
+
+  .btn {
+    width: 120px; /* Reduce button size for very small screens */
   }
 }
 .date-today {
