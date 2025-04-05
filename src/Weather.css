@@ -25,28 +25,30 @@
   width: 800px;
 }
 .btn {
-  width: 1000px; /* Set a fixed width for the button */
+  width: 140px; /* Set a fixed width for the button */
   display: inline-block; /* Ensure it stays inline with the input field */
   background-color: #353cf7;
   color: #fff;
   border: none;
-  margin-left: 150px; /* Add spacing between the input and button */
-  }
-/* Ensure the input field and button align properly */
-.form-control {
-  margin-right: 10px;
-  width: calc(100% - 10px); /* Adjust width to leave space for the button */
-  display: inline-block; /* Ensure it stays inline with the button */
+  margin-left: 10px; /* Add spacing between the input and button */
 }
 
-/* Adjust the search container for responsiveness */
+/* Ensure the input field and button align properly */
+
+.form-control {
+  width: calc(100% - 150px); /* Adjust width to leave space for the button */
+  display: inline-block; /* Ensure it stays inline with the button */
+  margin-right: 0; /* Remove unnecessary margin */
+}
+
+/* Adjust the search container for proper alignment */
 .search-container {
   display: flex;
   align-items: center; /* Vertically align the input and button */
-  justify-content: space-between; /* Ensure proper spacing */
+  justify-content: flex-start; /* Align items to the left */
   gap: 10px; /* Add spacing between the input and button */
-margin-right: 100px;
-  margin-left: 100px;
+  margin: 0 auto; /* Center the search container horizontally */
+  max-width: 800px; /* Optional: Limit the width of the search container */
 }
 .city-name {
   

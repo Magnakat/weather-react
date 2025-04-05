@@ -68,37 +68,31 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         {/* Search Form */}
-        <div className="search-container mb-3">
-  <form className="search" id="search" onSubmit={handleSubmit}>
-    <div className="row">
-      <div className="col-9 position-relative">
-        <input
-          type="search"
-          placeholder="Enter a City"
-          autoFocus="on"
-          autoComplete="off"
-          id="input-city"
-          className="form-control shadow-sm"
-          onChange={handleCityChange}
-          value={searchCity}
-        />
-        {searchCity && (
-          <button
-            type="button"
-            className="btn-close position-absolute top-50 end-0 translate-middle-y"
-            aria-label="Clear"
-            onClick={clearSearchField}
-          ></button>
-        )}
-      </div>
-      <div className="col-3">
-        <button type="submit" className="btn btn-primary w-100">
-          Search
-        </button>
-      </div>
-    </div>
-  </form>
-</div>
+           <div className="search-container mb-3">
+          <form className="search" id="search" onSubmit={handleSubmit}>
+            <input
+              type="search"
+              placeholder="Enter a City"
+              autoFocus="on"
+              autoComplete="off"
+              id="input-city"
+              className="form-control shadow-sm"
+              onChange={handleCityChange}
+              value={searchCity}
+            />
+            {searchCity && (
+              <button
+                type="button"
+                className="btn-close position-absolute top-50 end-0 translate-middle-y"
+                aria-label="Clear"
+                onClick={clearSearchField}
+              ></button>
+            )}
+            <button type="submit" className="btn btn-primary">
+              Search
+            </button>
+          </form>
+        </div>
 
         {/* Weather Info */}
         <div className="weather-info-container">
