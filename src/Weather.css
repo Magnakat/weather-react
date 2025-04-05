@@ -16,13 +16,13 @@
   background-color: #353cf7;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 40px;
   margin-right: 10px;
-  width: 100px;
+  width: 200px;
 }
 .search {
   display: flex;
-  width: 600px;
+  width: 800px;
 }
 
 .form-control {

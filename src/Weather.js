@@ -79,6 +79,7 @@ export default function Weather(props) {
                   onChange={handleCityChange}
                   value={searchCity} // Bind the input field to the `searchCity` state
                 />
+                
               </div>
               <div className="col-3">
                 <button type="submit" className="btn btn-primary w-100">
