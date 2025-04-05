@@ -41,9 +41,7 @@ export default function Weather(props) {
     setSearchCity(event.target.value);
   }
 
-  function clearSearchField() {
-    setSearchCity(""); // Clear the input field
-  }
+
 
   function showFahrenheit(event) {
     event.preventDefault();
